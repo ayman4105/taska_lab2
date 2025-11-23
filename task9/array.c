@@ -298,3 +298,25 @@ int get_capacity(Array *arr){
     return arr->capacity;
 }
 
+
+ArrayStatus revers(Array *arr){
+    ArrayStatus status;
+    if (arr == NULL)
+    {
+        status = NULL_ERROR;
+    }
+    else if (arr->size == 0) {
+        status = EMPTY_ARRAY;
+    }
+    else
+    {
+        for(int i =0; i<(arr->capacity)/2 ; i++){
+            int temp = arr->array[i];
+            arr->array[i] = arr->array[arr->capacity - i - 1];
+            arr->array[arr->capacity - i - 1] = temp;
+        }
+    }
+
+
+}
+

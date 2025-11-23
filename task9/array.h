@@ -34,12 +34,7 @@ ArrayStatus arr_max(Array *arr);
 ArrayStatus arr_min(Array *arr);
 ArrayStatus arr_sum(Array *arr);
 int get_capacity(Array *arr);
-
-
-
-
-
-
+ArrayStatus revers(Array *arr);
 
 
 
