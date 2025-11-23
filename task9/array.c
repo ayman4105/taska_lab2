@@ -14,7 +14,7 @@ ArrayStatus display(const Array* arr) {
     else  {
         status = SUCCESS;
         for (int i = 0; i < arr->size; i++) {
-            printf("%d\n", arr->array[i]);
+            printf("%d", arr->array[i]);
         }
     }
     return status;
@@ -310,13 +310,72 @@ ArrayStatus revers(Array *arr){
     }
     else
     {
-        for(int i =0; i<(arr->capacity)/2 ; i++){
+        status = SUCCESS;
+        for(int i =0; i<(arr->size)/2 ; i++){
             int temp = arr->array[i];
-            arr->array[i] = arr->array[arr->capacity - i - 1];
-            arr->array[arr->capacity - i - 1] = temp;
+            arr->array[i] = arr->array[arr->size - i - 1];
+            arr->array[arr->size - i - 1] = temp;
         }
     }
-
-
+    return status;
 }
 
+
+ArrayStatus shift_right(Array *arr,int num_shift){
+    ArrayStatus status;
+    if (arr == NULL)
+    {
+        status = NULL_ERROR;
+    }
+    else if (arr->size == 0) {
+        status = EMPTY_ARRAY;
+    }
+    else
+    {
+        status = SUCCESS;
+        for(int i = arr->size-1; i >=0 ;i--){
+        int j = i - num_shift;
+        if(j>=0){
+            arr->array[i] = arr->array[j];
+        }
+        else if(j<0){
+            arr->array[i] =0;
+        }
+        else
+        {
+            return -1;
+        }
+        }
+    }
+    return status;
+}
+
+ArrayStatus shift_left(Array *arr,int num_shift){
+    ArrayStatus status;
+    if (arr == NULL)
+    {
+        status = NULL_ERROR;
+    }
+    else if (arr->size == 0) {
+        status = EMPTY_ARRAY;
+    }
+    else
+    {
+        status = SUCCESS;
+
+        for(int i = 0; i < arr->size;i++){
+        int j = i + num_shift;
+        if(j < arr->size){
+            arr->array[i] = arr->array[j];
+        }
+        else if(j>=0){
+            arr->array[i] = 0;
+        }
+        else
+        {
+            return -1;
+        }
+        }
+    }
+    return status;
+}

@@ -20,9 +20,9 @@ int main() {
     }
 
     ret = add(&arr, 5);
-    ret = add(&arr, 20);
+    ret = add(&arr, 2);
     ret = add(&arr, 1);
-    ret = add(&arr, 32);
+    ret = add(&arr, 8);
     ret = add(&arr, 9);
     ret = add(&arr, 3);
     ret = set(&arr, 5, 7);
@@ -35,6 +35,10 @@ int main() {
     //printf("%d\n",x);
     //printf("%d\n", ret);
     //ret = sort(&arr);
+    ret = display(&arr);
+    printf("\n");
+   // ret = revers(&arr);
+    ret= shift_left(&arr , 2);
     ret = display(&arr);
     free(arr.array);
     return 0;
