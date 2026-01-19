@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include"stack.h"
 
 
 typedef struct node {
@@ -10,6 +11,11 @@ typedef struct node {
 
 
 
+
+
+
+
+
 node* create_node(int value){
     node* new_node = (node*)malloc(sizeof(node));
     new_node->data = value;
@@ -17,6 +23,40 @@ node* create_node(int value){
     return new_node;
 }
 
+
+node* create_BST(int arr[], int n){
+    if(n == 0) return NULL;
+
+    node** stack = (node**)malloc(n * sizeof(node*)); // stack of node pointers
+    int top = -1;
+
+    node* root = create_node(arr[0]);
+    top++;
+    stack[top] = root;
+
+    for(int i = 1; i < n; i++){
+        node* temp = NULL;
+
+        while(top != -1 && arr[i] > stack[top]->data){
+            temp = stack[top];
+            top--;
+        }
+
+        if(temp != NULL){
+            temp->right = create_node(arr[i]);
+            top++;
+            stack[top] = temp->right;
+        }
+        else{
+            stack[top]->left = create_node(arr[i]);
+            top++;
+            stack[top] = stack[top-1]->left;
+        }
+    }
+
+    free(stack); // free temporary stack
+    return root;
+}
 
 node* insert_node(node* root , int value){
     if(root == NULL){
@@ -75,7 +115,6 @@ void pretorder(node* root){
     pretorder(root->left);
     pretorder(root->right);
 }
-
 
 
 node* find_min(node* root){
@@ -143,6 +182,8 @@ node* delete_node(node* root, int value){
 
     return root;
 }
+
+
 
 
 
